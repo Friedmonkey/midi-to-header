@@ -1,4 +1,4 @@
-﻿// Blazor WebAssembly project that converts a .mid file to a melody.h compatible with DacTone
+﻿@* // Blazor WebAssembly project that converts a .mid file to a melody.h compatible with DacTone
 
 // STEP 1: Create a new Blazor WebAssembly project (in terminal):
 // dotnet new blazorwasm -o MidiToHeaderBlazor
@@ -7,7 +7,7 @@
 // dotnet add package Melanchall.DryWetMidi
 
 // STEP 3: Update MainLayout.razor or Index.razor to contain the logic below
-
+ *@
 @page "/mid"
 @using Melanchall.DryWetMidi.Core
 @using Melanchall.DryWetMidi.Interaction
@@ -72,7 +72,7 @@
         await JS.InvokeVoidAsync("downloadFile", "melody.h", Convert.ToBase64String(bytes));
     }
 }
-
+@* 
 // STEP 4: Add JS function to wwwroot/index.html or _Host.cshtml:
 // <script>
 // function downloadFile(filename, base64) {
@@ -89,4 +89,4 @@
 // dotnet publish -c Release
 // Place output wwwroot files onto GitHub Pages
 
-// DONE! Static WebAssembly MIDI-to-header tool ready :)
+// DONE! Static WebAssembly MIDI-to-header tool ready :) *@
