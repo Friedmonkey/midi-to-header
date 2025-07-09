@@ -1,12 +1,12 @@
 self.assetsManifest = {
-  "version": "+umAJ6yx",
+  "version": "Hufhm1kS",
   "assets": [
     {
       "hash": "sha256-zsgSRjqt9jHXCL88oHgIyX0GzMHnqyYa9zGOGUOKm4M=",
       "url": "BlazorGitHubPages.styles.css"
     },
     {
-      "hash": "sha256-EcMZFM957deHeklojZ5m27nNHulA+9M8XfhnD0zMfag=",
+      "hash": "sha256-lKepkhFhR9WLaPFGHtRzejuvlpU/s6lct9FPLBL5k6E=",
       "url": "_framework/BlazorGitHubPages.dll"
     },
     {
@@ -154,7 +154,7 @@ self.assetsManifest = {
       "url": "_framework/System.dll"
     },
     {
-      "hash": "sha256-aIWf9fcw/x2V0UEs09ntx2QZhzSVE+4f3Z7EpNVDPBo=",
+      "hash": "sha256-h2gD6/Q6XdlUiAmZs4biCngEQP/O0yV+lQ+ZAShYHZ0=",
       "url": "_framework/blazor.boot.json"
     },
     {
