@@ -16,7 +16,9 @@
 
 <h3>🎵 MIDI to DacTone .h Generator :D</h3>
 
-<input type="file" @onchange="LoadMidi" accept=".mid,.midi" />
+@* <input type="file" @onchange="LoadMidi" accept=".mid,.midi" /> *@
+<InputFile OnChange="LoadMidi" accept=".mid" />
+
 
 @if (!string.IsNullOrEmpty(generatedHeader))
 {
@@ -29,17 +31,28 @@
 @code {
     private string generatedHeader = string.Empty;
     private byte[] midiData;
-
-    private async Task LoadMidi(ChangeEventArgs e)
+    async Task LoadMidi(InputFileChangeEventArgs e)
     {
-        var file = ((Microsoft.AspNetCore.Components.Forms.IBrowserFile)e.Value);
+        var file = e.File;
         using var stream = file.OpenReadStream();
-        using var ms = new MemoryStream();
-        await stream.CopyToAsync(ms);
-        midiData = ms.ToArray();
+        using var memStream = new MemoryStream();
+        await stream.CopyToAsync(memStream);
+        memStream.Position = 0;
 
-        ProcessMidi();
+        // Now use memStream with your MIDI parser like:
+        var midiFile = MidiFile.Read(memStream); // from DryWetMidi
     }
+    // private async Task LoadMidi(ChangeEventArgs e)
+    // {
+    //     var file = e.File; //((Microsoft.AspNetCore.Components.Forms.IBrowserFile)e.Value);
+
+    //     using var stream = file.OpenReadStream();
+    //     using var ms = new MemoryStream();
+    //     await stream.CopyToAsync(ms);
+    //     midiData = ms.ToArray();
+
+    //     ProcessMidi();
+    // }
 
     private void ProcessMidi()
     {

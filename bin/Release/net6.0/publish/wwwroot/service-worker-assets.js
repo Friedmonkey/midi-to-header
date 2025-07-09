@@ -1,12 +1,12 @@
 self.assetsManifest = {
-  "version": "HJD7ejSz",
+  "version": "ifm7SzKg",
   "assets": [
     {
       "hash": "sha256-zsgSRjqt9jHXCL88oHgIyX0GzMHnqyYa9zGOGUOKm4M=",
       "url": "BlazorGitHubPages.styles.css"
     },
     {
-      "hash": "sha256-hWVKlCC2WudsGs87Ula7U7ahdqc63gF4U5x43XRWW8c=",
+      "hash": "sha256-wvoOQElsYaT7GLfx+UlfrB96K3OlOJSaiqPaVQZH8xk=",
       "url": "_framework/BlazorGitHubPages.dll"
     },
     {
@@ -14,15 +14,15 @@ self.assetsManifest = {
       "url": "_framework/Melanchall.DryWetMidi.dll"
     },
     {
-      "hash": "sha256-eBnTk5ZE4pBSUyHfw11o62VxEV4rmEkdGeJfumJi8Cg=",
+      "hash": "sha256-7dsVnm+/FXYO3Vpexih0veaoappjlx9/GdQ7wlKu67Q=",
       "url": "_framework/Microsoft.AspNetCore.Components.Web.dll"
     },
     {
-      "hash": "sha256-RuMjtc4hIfwdnKCMmQWJod0E2jmDQC3mp7QlSbdZITo=",
+      "hash": "sha256-yfbageY4zvO+pU/sO/q97fHtHPCqWCumSt9AttzDDuk=",
       "url": "_framework/Microsoft.AspNetCore.Components.WebAssembly.dll"
     },
     {
-      "hash": "sha256-Yh5PpVhmDPlJ0u7ItxcooyLKPkfXbVuLGW/sA+aHcOs=",
+      "hash": "sha256-qlP7kjKJAb6s9/ibF7XvyHye+zOlIdDbGhpTheY733E=",
       "url": "_framework/Microsoft.AspNetCore.Components.dll"
     },
     {
@@ -66,7 +66,7 @@ self.assetsManifest = {
       "url": "_framework/Microsoft.JSInterop.WebAssembly.dll"
     },
     {
-      "hash": "sha256-DrtMZ57yQ/kt3l06EZecmSF7NNbHpN6B1nfB9VReM/8=",
+      "hash": "sha256-BoolKJ72DeUvZ37Xzmvi4P/cRSXVWhhs4NSOfxMRR3U=",
       "url": "_framework/Microsoft.JSInterop.dll"
     },
     {
@@ -118,7 +118,7 @@ self.assetsManifest = {
       "url": "_framework/System.ObjectModel.dll"
     },
     {
-      "hash": "sha256-g5OY7gcj4PCa3pQ371zwjKstjkssH/I/cF7UGGQ+kUY=",
+      "hash": "sha256-IEczb+ZHwdMBSW8Cfhfq361/QNlc30Zlayoj+PqQJF0=",
       "url": "_framework/System.Private.CoreLib.dll"
     },
     {
@@ -154,7 +154,7 @@ self.assetsManifest = {
       "url": "_framework/System.dll"
     },
     {
-      "hash": "sha256-eVzDS/09s5HiQTTGupCJkTk9jvEknetTbAige2P9ujI=",
+      "hash": "sha256-Vxv3ARyh81Fsz6ESa9bea5srbbDDghdZA5jlaUMcofw=",
       "url": "_framework/blazor.boot.json"
     },
     {
