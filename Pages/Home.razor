@@ -78,6 +78,7 @@
         sb.AppendLine("};");
 
         generatedHeader = sb.ToString();
+        StateHasChanged();
     }
 
     private async Task DownloadHeader()
