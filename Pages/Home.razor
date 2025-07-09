@@ -40,7 +40,8 @@
         memStream.Position = 0;
 
         // Now use memStream with your MIDI parser like:
-        var midiFile = MidiFile.Read(memStream); // from DryWetMidi
+        //var midiFile = MidiFile.Read(memStream); // from DryWetMidi
+        ProcessMidi(memStream);
     }
     // private async Task LoadMidi(ChangeEventArgs e)
     // {
@@ -54,9 +55,9 @@
     //     ProcessMidi();
     // }
 
-    private void ProcessMidi()
+    private void ProcessMidi(MemoryStream memStream)
     {
-        var midiFile = MidiFile.Read(new MemoryStream(midiData));
+        var midiFile = MidiFile.Read(memStream);
         var tempoMap = midiFile.GetTempoMap();
         var notes = midiFile.GetNotes();
 
