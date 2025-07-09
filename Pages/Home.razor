@@ -1,0 +1,92 @@
+﻿// Blazor WebAssembly project that converts a .mid file to a melody.h compatible with DacTone
+
+// STEP 1: Create a new Blazor WebAssembly project (in terminal):
+// dotnet new blazorwasm -o MidiToHeaderBlazor
+
+// STEP 2: Add DryWetMIDI to the project via NuGet (edit .csproj or use dotnet CLI)
+// dotnet add package Melanchall.DryWetMidi
+
+// STEP 3: Update MainLayout.razor or Index.razor to contain the logic below
+
+@page "/mid"
+@using Melanchall.DryWetMidi.Core
+@using Melanchall.DryWetMidi.Interaction
+@using System.Text
+@inject IJSRuntime JS
+
+<h3>🎵 MIDI to DacTone .h Generator :D</h3>
+
+<input type="file" @onchange="LoadMidi" accept=".mid,.midi" />
+
+@if (!string.IsNullOrEmpty(generatedHeader))
+{
+    <h4>Generated melody.h</h4>
+    <textarea style="width:100%; height:300px">@generatedHeader</textarea>
+    <br />
+    <button @onclick="DownloadHeader">Download melody.h</button>
+}
+
+@code {
+    private string generatedHeader = string.Empty;
+    private byte[] midiData;
+
+    private async Task LoadMidi(ChangeEventArgs e)
+    {
+        var file = ((Microsoft.AspNetCore.Components.Forms.IBrowserFile)e.Value);
+        using var stream = file.OpenReadStream();
+        using var ms = new MemoryStream();
+        await stream.CopyToAsync(ms);
+        midiData = ms.ToArray();
+
+        ProcessMidi();
+    }
+
+    private void ProcessMidi()
+    {
+        var midiFile = MidiFile.Read(new MemoryStream(midiData));
+        var tempoMap = midiFile.GetTempoMap();
+        var notes = midiFile.GetNotes();
+
+        var sb = new StringBuilder();
+        sb.AppendLine("Note melody[] = {");
+
+        foreach (var note in notes)
+        {
+            var name = note.NoteName.ToString().ToUpper();
+            var octave = note.Octave;
+            var define = $"NOTE_{name}{octave}";
+            var duration = (int)note.LengthAs<MetricTimeSpan>(tempoMap).TotalMilliseconds;
+
+            sb.AppendLine($"    {{ {define}, {duration} }},");
+        }
+
+        sb.AppendLine("    { 0, 0 } // end");
+        sb.AppendLine("};");
+
+        generatedHeader = sb.ToString();
+    }
+
+    private async Task DownloadHeader()
+    {
+        var bytes = Encoding.UTF8.GetBytes(generatedHeader);
+        await JS.InvokeVoidAsync("downloadFile", "melody.h", Convert.ToBase64String(bytes));
+    }
+}
+
+// STEP 4: Add JS function to wwwroot/index.html or _Host.cshtml:
+// <script>
+// function downloadFile(filename, base64) {
+//     const link = document.createElement('a');
+//     link.download = filename;
+//     link.href = 'data:text/plain;base64,' + base64;
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+// }
+// </script>
+
+// STEP 5: Publish with:
+// dotnet publish -c Release
+// Place output wwwroot files onto GitHub Pages
+
+// DONE! Static WebAssembly MIDI-to-header tool ready :)
