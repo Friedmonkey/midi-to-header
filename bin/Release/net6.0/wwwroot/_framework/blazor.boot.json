@@ -1,7 +1,7 @@
 {
   "entryAssembly": "BlazorGitHubPages",
   "resources": {
-    "hash": "sha256-qliBvEk4eWjmU3HXonC1cs8CQ90t/HKy+tSogVfcJPs=",
+    "hash": "sha256-3AltIal42X3FpX7icwGzSsvMf4nEbp58neU5iuZ2ub0=",
     "runtime": {
       "dotnet.js": "sha256-pu7MO47B6So4jcW6iY2UI11lBZYz2EQnJKiYNsOpNJg=",
       "dotnet.timezones.blat": "sha256-vrFYQt55a4tGoDGoyRfjjGa1nSecx646RK78iTzPWCM=",
@@ -202,10 +202,10 @@
       "mscorlib.dll": "sha256-FHccFgM8rcGOQ8oacA4eEgiiOynHayVKyd2ICq3Bo4w=",
       "netstandard.dll": "sha256-D91viTBgwuzeuIOx1KgBYnoY0hl2IpcBu/zr22Fu0BU=",
       "System.Private.CoreLib.dll": "sha256-5FbWgChEgLPlYByi8VsHTisbCpgMNSbf95JK5dVOs50=",
-      "BlazorGitHubPages.dll": "sha256-lKepkhFhR9WLaPFGHtRzejuvlpU/s6lct9FPLBL5k6E="
+      "BlazorGitHubPages.dll": "sha256-8dazZJ0SDxw4O0AwyrTIHVDW5uSmQE4ByiI2a/RQRsg="
     },
     "pdb": {
-      "BlazorGitHubPages.pdb": "sha256-CTdNS6f//461VBqC+DMuHFcFrnDuxF1vRnIiFYURdYs="
+      "BlazorGitHubPages.pdb": "sha256-zSqu/Y8EPXvTQnYmsaJjCPQiwAluPW+eXZ1T0IaGC38="
     },
     "runtimeAssets": {
       "dotnet.wasm": {

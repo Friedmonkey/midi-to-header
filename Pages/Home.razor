@@ -59,27 +59,73 @@
     {
         var midiFile = MidiFile.Read(memStream);
         var tempoMap = midiFile.GetTempoMap();
-        var notes = midiFile.GetNotes();
+        var notes = midiFile.GetNotes().OrderBy(n => n.Time).ToList();
 
         var sb = new StringBuilder();
         sb.AppendLine("Note melody[] = {");
 
+        long lastEndTime = 0;
+
         foreach (var note in notes)
         {
+            var startTime = note.Time;
+            var endTime = note.EndTime;
+
+            // Insert a rest if there's a gap between lastEndTime and this note's startTime
+            if (startTime > lastEndTime)
+            {
+                var restStart = TimeConverter.ConvertTo<MetricTimeSpan>(lastEndTime, tempoMap);
+                var restEnd = TimeConverter.ConvertTo<MetricTimeSpan>(startTime, tempoMap);
+                var restDuration = (int)(restEnd - restStart).TotalMilliseconds;
+
+                sb.AppendLine($"    {{ 0, {restDuration} }},");
+            }
+
+            // Note itself
             var name = note.NoteName.ToString().ToUpper();
             var octave = note.Octave;
             var define = $"NOTE_{name}{octave}";
-            var duration = (int)note.LengthAs<MetricTimeSpan>(tempoMap).TotalMilliseconds;
+            var duration = (int)(TimeConverter.ConvertTo<MetricTimeSpan>(endTime, tempoMap) -
+                                 TimeConverter.ConvertTo<MetricTimeSpan>(startTime, tempoMap)).TotalMilliseconds;
 
             sb.AppendLine($"    {{ {define}, {duration} }},");
+
+            lastEndTime = endTime;
         }
+
 
         sb.AppendLine("    { 0, 0 } // end");
         sb.AppendLine("};");
 
-        generatedHeader = sb.ToString();
+        generatedHeader = sb.ToString().Replace("SHARP","S");
         StateHasChanged();
     }
+
+    // private void ProcessMidi(MemoryStream memStream)
+    // {
+    //     var midiFile = MidiFile.Read(memStream);
+    //     var tempoMap = midiFile.GetTempoMap();
+    //     var notes = midiFile.GetNotes();
+
+    //     var sb = new StringBuilder();
+    //     sb.AppendLine("Note melody[] = {");
+
+    //     foreach (var note in notes)
+    //     {
+    //         var name = note.NoteName.ToString().ToUpper();
+    //         var octave = note.Octave;
+    //         var define = $"NOTE_{name}{octave}";
+    //         var duration = (int)note.LengthAs<MetricTimeSpan>(tempoMap).TotalMilliseconds;
+
+    //         sb.AppendLine($"    {{ {define}, {duration} }},");
+    //     }
+
+    //     sb.AppendLine("    { 0, 0 } // end");
+    //     sb.AppendLine("};");
+
+    //     generatedHeader = sb.ToString().Replace("SHARP", "S");
+    //     StateHasChanged();
+    // }
 
     private async Task DownloadHeader()
     {
